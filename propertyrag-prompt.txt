@@ -1,0 +1,76 @@
+Du bist ein Senior Python Engineer. Baue "PropertyRAG" - ein RAG-System für Immobilien-Dokumentenanalyse.
+
+## PROBLEM
+
+Ein Immobilienunternehmen hat tausende PDFs: Mietverträge, Gutachten, Grundbuchauszüge, Nebenkostenabrechnungen. Aktuell werden Daten manuell extrahiert und in Excel gepflegt. Das kostet 20h/Woche.
+
+**Ziel:** PDFs hochladen → strukturierte JSON-Daten → querybar via natürlicher Sprache.
+
+## TECH CONSTRAINTS
+
+- Python 3.11+
+- LangChain (du entscheidest welche Komponenten sinnvoll sind)
+- OpenAI API (Embeddings + Chat)
+- PostgreSQL mit pgvector (nicht ChromaDB - muss produktionsreif sein)
+- FastAPI für API
+
+## DOMÄNE: IMMOBILIEN
+
+Typische Dokumente und was extrahiert werden soll:
+
+**Mietverträge:** Parteien, Objekt, Miete (Netto/Brutto), Nebenkosten, Laufzeit, Kündigungsfristen, Indexierung, Sondervereinbarungen
+
+**Gutachten:** Verkehrswert, Ertragswert, Sachwert, Bewertungsstichtag, Gutachter, Nutzungsart, Flächen
+
+**Grundbuchauszüge:** Eigentümer, Belastungen (Hypotheken, Dienstbarkeiten), Flurnummer, Grundstücksgröße
+
+**Nebenkostenabrechnungen:** Abrechnungszeitraum, Positionen, Umlageschlüssel, Nachzahlung/Guthaben
+
+## KERN-ANFORDERUNGEN
+
+1. **Ingestion:** PDF Upload → Text-Extraktion → Chunking → Embedding → PostgreSQL
+2. **Strukturierte Extraktion:** LLM extrahiert domänenspezifische Felder → JSON Schema pro Dokumenttyp
+3. **RAG Query:** Natürlichsprachliche Fragen → relevante Chunks retrieven → LLM-Antwort mit Quellenangabe
+4. **REST API:** Upload, Query, CRUD für Dokumente/Projekte
+
+## QUALITÄTS-CONSTRAINTS
+
+- Production-ready (nicht Prototyp)
+- Type Hints, Docstrings, Tests
+- Async wo sinnvoll
+- Logging, Error Handling
+- Docker-ready
+
+## WAS DU ENTSCHEIDEN SOLLST
+
+Ich gebe dir bewusst Freiheit bei:
+
+- **Architektur:** Wie strukturierst du das Projekt? Welche Patterns?
+- **LangChain:** Welche Komponenten nutzt du, welche baust du selbst?
+- **Chunking-Strategie:** Was funktioniert für diese Dokumenttypen am besten?
+- **Schema-Design:** Wie modellierst du die verschiedenen Dokumenttypen?
+- **Extraction Approach:** Structured Output, Function Calling, oder Prompt Engineering?
+- **Retrieval:** Naive Similarity, HyDE, Parent-Child Chunks, Re-ranking?
+
+Erkläre deine Entscheidungen kurz, dann implementiere.
+
+## NICHT
+
+- Kein Overengineering (YAGNI)
+- Keine UI (nur API)
+- Nicht LangChain für alles erzwingen - wenn raw OpenAI besser passt, nutze das
+
+## MILESTONES
+
+Arbeite in dieser Reihenfolge, zeige mir nach jedem Milestone den Stand:
+
+1. **Foundation:** Projektstruktur, Dependencies, Config, DB Schema
+2. **Ingestion:** PDF → Chunks → Embeddings → PostgreSQL
+3. **Extraction:** Strukturierte Datenextraktion pro Dokumenttyp
+4. **RAG:** Query-Pipeline mit Retrieval + Generation
+5. **API:** FastAPI Endpoints
+6. **Polish:** Tests, Docker, README
+
+---
+
+Starte mit Milestone 1. Erkläre zuerst deine Architektur-Entscheidungen (max 10 Sätze), dann implementiere.
