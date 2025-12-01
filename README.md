@@ -2,6 +2,9 @@
 
 RAG-System für Immobilien-Dokumentenanalyse. Extrahiert strukturierte Daten aus PDFs und ermöglicht natürlichsprachliche Abfragen.
 
+## Architekturübersicht
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/87d60403-7ed5-4c1e-922d-7d0d0949c636" />
+
 ## Features
 
 - **PDF-Ingestion**: Upload von Mietverträgen, Gutachten, Grundbuchauszügen, Nebenkostenabrechnungen
@@ -176,9 +179,6 @@ pytest tests/test_api.py
 4. **OpenAI JSON Mode**: Strukturierte Outputs ohne Function Calling Overhead
 5. **Repository Pattern**: Saubere Trennung DB ↔ Business Logic
 6. **Async durchgängig**: asyncpg, AsyncSession, AsyncOpenAI
-
-## Architekturübersicht
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/87d60403-7ed5-4c1e-922d-7d0d0949c636" />
 
 ## Lizenz
 
